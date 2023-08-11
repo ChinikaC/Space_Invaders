@@ -18,16 +18,19 @@ class Player {
 
         const image = new Image()
         image.src = './img/spaceship.png'
-
-        this.image = image
-        this.width = 100
-        this.height = 100
+        image.onload = () => {
+            this.image = image
+            this.width = image.width
+            this.height = image.height
+        }
     }
 
     draw() {
         // context.fillStyle = 'yellow'
         // context.fillRect(this.position.x, this.position.y,
         //     this.width, this.height)
+
+        if (this.image)
         context.drawImage(
             this.image, 
             this.position.x,
