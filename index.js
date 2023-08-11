@@ -20,4 +20,10 @@ class Player {
         this.width = 100
         this.height = 100
     }
+
+    draw() {
+        canvas.fillStyle = 'blue'
+        canvas.fillRectangle(this.position.x, this.position.y,
+            this.width, this.height)
+    }
 }
