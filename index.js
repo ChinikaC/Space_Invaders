@@ -28,9 +28,12 @@ class Player {
         // context.fillStyle = 'yellow'
         // context.fillRect(this.position.x, this.position.y,
         //     this.width, this.height)
-        context.drawImage(this.image, this.position.x,
-            this.position.y)
-        
+        context.drawImage(
+            this.image, 
+            this.position.x,
+            this.position.y, 
+            this.width, 
+            this.height)
     }
 }
 
@@ -39,6 +42,8 @@ player.draw()
 
 function animate() {
     requestAnimationFrame(animate)
+    context.fillStyle= 'black'
+    context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.draw()
 }
 
