@@ -22,8 +22,13 @@ class Player {
     }
 
     draw() {
-        canvas.fillStyle = 'blue'
-        canvas.fillRectangle(this.position.x, this.position.y,
+        context.fillStyle = 'yellow'
+        context.fillRect(this.position.x, this.position.y,
             this.width, this.height)
     }
 }
+
+const player = new Player()
+player.draw()
+
+
