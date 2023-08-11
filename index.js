@@ -15,5 +15,9 @@ class Player {
             x: 0,
             y: 0
         }
+
+        // this.image =
+        this.width = 100
+        this.height = 100
     }
 }
