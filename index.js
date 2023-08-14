@@ -59,6 +59,9 @@ addEventListener('keydown', ({key}) => {
         case 'ArrowRight':
             console.log('right')
             break
+        case ' ':
+                console.log('space')
+                break
     }
 })
 
