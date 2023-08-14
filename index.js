@@ -6,11 +6,6 @@ canvas.height= innerHeight
 
 class Player {
     constructor() {
-        this.position = {
-            x: 200,
-            y: 200
-        }
-
         this.velocity = {
             x: 0,
             y: 0
@@ -23,6 +18,10 @@ class Player {
             this.image = image
             this.width = image.width * scale
             this.height = image.height * scale
+            this.position = {
+                x: canvas.width / 2 - this.width / 2,
+                y: 200
+            }
         }
     }
 
@@ -30,7 +29,6 @@ class Player {
         // context.fillStyle = 'yellow'
         // context.fillRect(this.position.x, this.position.y,
         //     this.width, this.height)
-
         if (this.image)
         context.drawImage(
             this.image, 
@@ -46,7 +44,7 @@ player.draw()
 
 function animate() {
     requestAnimationFrame(animate)
-    context.fillStyle= 'black'
+    context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.draw()
 }
