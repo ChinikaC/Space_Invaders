@@ -20,7 +20,7 @@ class Player {
             this.height = image.height * scale
             this.position = {
                 x: canvas.width / 2 - this.width / 2,
-                y: 200
+                y: canvas.height - this.height - 20
             }
         }
     }
@@ -29,7 +29,6 @@ class Player {
         // context.fillStyle = 'yellow'
         // context.fillRect(this.position.x, this.position.y,
         //     this.width, this.height)
-        if (this.image)
         context.drawImage(
             this.image, 
             this.position.x,
@@ -37,16 +36,22 @@ class Player {
             this.width, 
             this.height)
     }
+
+    update(){
+        if (this.image) {
+        this.draw()
+        this.position.x += this.velocity.x
+    }
+    }
 }
 
 const player = new Player()
-player.draw()
 
 function animate() {
     requestAnimationFrame(animate)
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
-    player.draw()
+    player.update()
 }
 
 animate()
@@ -55,6 +60,7 @@ addEventListener('keydown', ({key}) => {
     switch (key){
         case 'ArrowLeft':
             console.log('left')
+            player.velocity.x = -5
             break
         case 'ArrowRight':
             console.log('right')
