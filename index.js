@@ -46,6 +46,18 @@ class Player {
 }
 
 const player = new Player()
+const keys = {
+    ArrowLeft: {
+        pressed: false
+    },
+    ArrowRight: {
+        pressed: false
+    },
+    space: {
+        pressed: false
+    }
+
+}
 
 function animate() {
     requestAnimationFrame(animate)
@@ -61,9 +73,11 @@ addEventListener('keydown', ({key}) => {
         case 'ArrowLeft':
             console.log('left')
             player.velocity.x = -5
+            keys.ArrowLeft.pressed = true
             break
         case 'ArrowRight':
             console.log('right')
+            keys.ArrowRight.pressed = true
             break
         case ' ':
                 console.log('space')
