@@ -64,6 +64,12 @@ function animate() {
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.update()
+
+    if (keys.ArrowLeft.pressed){
+        player.velocity.x = -5
+    } else {
+        player.velocity.x = 0
+    }
 }
 
 animate()
@@ -72,12 +78,27 @@ addEventListener('keydown', ({key}) => {
     switch (key){
         case 'ArrowLeft':
             console.log('left')
-            player.velocity.x = -5
             keys.ArrowLeft.pressed = true
             break
         case 'ArrowRight':
             console.log('right')
             keys.ArrowRight.pressed = true
+            break
+        case ' ':
+                console.log('space')
+                break
+    }
+})
+
+addEventListener('keyup', ({key}) => {
+    switch (key){
+        case 'ArrowLeft':
+            console.log('left')
+            keys.ArrowLeft.pressed = false
+            break
+        case 'ArrowRight':
+            console.log('right')
+            keys.ArrowRight.pressed = false
             break
         case ' ':
                 console.log('space')
