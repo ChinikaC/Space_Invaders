@@ -65,9 +65,10 @@ function animate() {
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.update()
 
-    if (keys.ArrowLeft.pressed){
+    if (keys.ArrowLeft.pressed && player.position.x >= 0){
         player.velocity.x = -5
-    } else if (keys.ArrowRight.pressed){
+    } else if (keys.ArrowRight.pressed && 
+        player.position.x + player.width <= canvas.width){
         player.velocity.x = 5
     } else {
         player.velocity.x = 0
