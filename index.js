@@ -67,6 +67,8 @@ function animate() {
 
     if (keys.ArrowLeft.pressed){
         player.velocity.x = -5
+    } else if (keys.ArrowRight.pressed){
+        player.velocity.x = 5
     } else {
         player.velocity.x = 0
     }
