@@ -81,7 +81,14 @@ class Projectile {
             context.fill()
             context.closePath()
     }
+
+    update(){
+        this.draw()
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+    }
 }
+
 
 const player = new Player()
 const keys = {
