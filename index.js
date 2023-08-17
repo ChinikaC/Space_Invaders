@@ -2,7 +2,7 @@ const canvas = document.querySelector('canvas')
 const context = canvas.getContext('2d')
 
 canvas.width = innerWidth
-canvas.height= innerHeight
+canvas.height = innerHeight
 
 class Player {
     constructor() {
@@ -34,33 +34,45 @@ class Player {
 
         context.save()
         context.translate(
-        player.position.x + player.width / 2,
-        player.position.y + player.height / 2
-        ) 
+            player.position.x + player.width / 2,
+            player.position.y + player.height / 2
+        )
         context.rotate(this.rotation)
 
         context.translate(
             -player.position.x - player.width / 2,
             -player.position.y - player.height / 2
-            ) 
+        )
 
         context.drawImage(
-            this.image, 
+            this.image,
             this.position.x,
-            this.position.y, 
-            this.width, 
+            this.position.y,
+            this.width,
             this.height)
 
         context.restore()
     }
 
-
-
-    update(){
+    update() {
         if (this.image) {
-        this.draw()
-        this.position.x += this.velocity.x
+            this.draw()
+            this.position.x += this.velocity.x
+        }
     }
+}
+
+class Projectile {
+    constructor({position, velocity}) {
+        this.position = position // this is dynamic which is why we passed it in above
+        this.velocity = velocity // this is dynamic which is why we passed it in above
+        this.radius = 3 // this is static which is why we did not passed it in above
+
+    }
+
+    draw(){
+        context.beginPath()
+        context.arc()
     }
 }
 
@@ -84,11 +96,11 @@ function animate() {
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.update()
 
-    if (keys.ArrowLeft.pressed && player.position.x >= 0){
+    if (keys.ArrowLeft.pressed && player.position.x >= 0) {
         player.velocity.x = -5
         player.rotation = -0.15
-    } else if (keys.ArrowRight.pressed && 
-        player.position.x + player.width <= canvas.width){
+    } else if (keys.ArrowRight.pressed &&
+        player.position.x + player.width <= canvas.width) {
         player.velocity.x = 5
         player.rotation = 0.15
     } else {
@@ -99,8 +111,8 @@ function animate() {
 
 animate()
 
-addEventListener('keydown', ({key}) => {
-    switch (key){
+addEventListener('keydown', ({ key }) => {
+    switch (key) {
         case 'ArrowLeft':
             console.log('left')
             keys.ArrowLeft.pressed = true
@@ -110,13 +122,13 @@ addEventListener('keydown', ({key}) => {
             keys.ArrowRight.pressed = true
             break
         case ' ':
-                console.log('space')
-                break
+            console.log('space')
+            break
     }
 })
 
-addEventListener('keyup', ({key}) => {
-    switch (key){
+addEventListener('keyup', ({ key }) => {
+    switch (key) {
         case 'ArrowLeft':
             console.log('left')
             keys.ArrowLeft.pressed = false
@@ -126,8 +138,8 @@ addEventListener('keyup', ({key}) => {
             keys.ArrowRight.pressed = false
             break
         case ' ':
-                console.log('space')
-                break
+            console.log('space')
+            break
     }
 })
 
