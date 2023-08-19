@@ -91,7 +91,7 @@ class Projectile {
 
 
 const player = new Player()
-const projestiles = []
+const projectiles = []
 const keys = {
     ArrowLeft: {
         pressed: false
@@ -110,6 +110,9 @@ function animate() {
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.update()
+    projectiles.forEach(projectile => {
+        projectile.update()
+    })
 
     if (keys.ArrowLeft.pressed && player.position.x >= 0) {
         player.velocity.x = -5
