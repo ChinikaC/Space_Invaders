@@ -64,10 +64,10 @@ class Player {
 
 class Projectile { 
     constructor({ position, velocity }) {
-    this.position = position // this is dynamic which is why we passed it in above
-    this.velocity = velocity // this is dynamic which is why we passed it in above
+    this.position = position 
+    this.velocity = velocity 
 
-    this.radius = 3 // this is static which is why we did not passed it in above
+    this.radius = 3 
 }
     
     draw() {
