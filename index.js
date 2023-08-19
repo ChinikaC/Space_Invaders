@@ -91,6 +91,7 @@ class Projectile {
 
 
 const player = new Player()
+const projestiles = []
 const keys = {
     ArrowLeft: {
         pressed: false
