@@ -62,31 +62,31 @@ class Player {
     }
 }
 
-class Projectile { 
+class Projectile {
     constructor({ position, velocity }) {
-    this.position = position 
-    this.velocity = velocity 
+        this.position = position
+        this.velocity = velocity
 
-    this.radius = 3 
-}
-    
+        this.radius = 3
+    }
+
     draw() {
         context.beginPath()
-        context.arc(this.position.x, 
-            this.position.y, 
-            this.radius, 
-            0, 
+        context.arc(this.position.x,
+            this.position.y,
+            this.radius,
+            0,
             Math.PI * 2)
         context.fillStyle = 'red'
         context.fill()
         context.closePath()
-      }
+    }
 
-      update() {
+    update() {
         this.draw()
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
-      }
+    }
 }
 
 const player = new Player()
@@ -111,12 +111,12 @@ function animate() {
     player.update()
     projectiles.forEach((projectile, index) => {
 
-        if(projectile.position.y + projectile.radius <= 0){
-            setTimeout(() =>{
+        if (projectile.position.y + projectile.radius <= 0) {
+            setTimeout(() => {
                 projectiles.splice(index, 1)
             }, 0)
         } else {
-            projectile.update()  
+            projectile.update()
         }
     })
 
@@ -154,12 +154,10 @@ addEventListener('keydown', ({ key }) => {
                 },
                 velocity: {
                     x: 0,
-                    y:-10
+                    y: -10
                 }
             })
             )
-
-            console.log(projectiles)
             break
     }
 })
