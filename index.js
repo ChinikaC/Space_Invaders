@@ -143,12 +143,12 @@ addEventListener('keydown', ({ key }) => {
             console.log('space')
             projectiles.push(new Projectile({
                 position: {
-                    x: player.position.x,
+                    x: player.position.x + player.width / 2,
                     y: player.position.y
                 },
                 velocity: {
                     x: 0,
-                    y:-5
+                    y:-10
                 }
             })
             )
