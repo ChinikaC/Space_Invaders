@@ -90,17 +90,8 @@ class Projectile {
 }
 
 const player = new Player()
-const projectiles = [new Projectile({
-    position: {
-        x: 300,
-        y: 300
-    },
-    velocity: {
-        x: 0,
-        y:0
-
-    }
-})]
+const projectiles = [
+]
 const keys = {
     ArrowLeft: {
         pressed: false
@@ -150,6 +141,18 @@ addEventListener('keydown', ({ key }) => {
             break
         case ' ':
             console.log('space')
+            projectiles.push(new Projectile({
+                position: {
+                    x: 300,
+                    y: 300
+                },
+                velocity: {
+                    x: 0,
+                    y:-5
+            
+                }
+            })
+            )
             break
     }
 })
