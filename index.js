@@ -90,8 +90,7 @@ class Projectile {
 }
 
 const player = new Player()
-const projectiles = [
-]
+const projectiles = []
 const keys = {
     ArrowLeft: {
         pressed: false
@@ -110,8 +109,13 @@ function animate() {
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.update()
-    projectiles.forEach(projectile => {
-        projectile.update()
+    projectiles.forEach((projectile, index) => {
+
+        if(projectile.position.y + projectile.radius <= 0){
+            projectiles.splice(index, 1)
+        } else {
+            projectile.update()  
+        }
     })
 
     if (keys.ArrowLeft.pressed && player.position.x >= 0) {
@@ -132,15 +136,15 @@ animate()
 addEventListener('keydown', ({ key }) => {
     switch (key) {
         case 'ArrowLeft':
-            console.log('left')
+            // console.log('left')
             keys.ArrowLeft.pressed = true
             break
         case 'ArrowRight':
-            console.log('right')
+            // console.log('right')
             keys.ArrowRight.pressed = true
             break
         case ' ':
-            console.log('space')
+            // console.log('space')
             projectiles.push(new Projectile({
                 position: {
                     x: player.position.x + player.width / 2,
@@ -152,6 +156,8 @@ addEventListener('keydown', ({ key }) => {
                 }
             })
             )
+
+            console.log(projectiles)
             break
     }
 })
