@@ -142,12 +142,12 @@ class Grid {
             x:0,
             y:0
         }
+        this.invaders = [new Invader()]
     }
 }
 
 const player = new Player()
 const projectiles = []
-const invader = new Invader()
 const keys = {
     ArrowLeft: {
         pressed: false
@@ -165,7 +165,6 @@ function animate() {
     requestAnimationFrame(animate)
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
-    invader.update()
     player.update()
     projectiles.forEach((projectile, index) => {
 
