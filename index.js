@@ -144,10 +144,12 @@ class Grid {
         }
         this.invaders = [new Invader()]
     }
+    update() {}
 }
 
 const player = new Player()
 const projectiles = []
+const grids = [new Grid()]
 const keys = {
     ArrowLeft: {
         pressed: false
@@ -158,7 +160,6 @@ const keys = {
     space: {
         pressed: false
     }
-
 }
 
 function animate() {
@@ -175,6 +176,12 @@ function animate() {
         } else {
             projectile.update()
         }
+    })
+    grids.forEach(grid => {
+        grid.update()
+        grid.invaders.forEach(invader => {
+            invader.update()
+        })
     })
 
     if (keys.ArrowLeft.pressed && player.position.x >= 0) {
