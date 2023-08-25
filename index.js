@@ -90,7 +90,7 @@ class Projectile {
 }
 
 class Invader {
-    constructor({position}) {
+    constructor({ position }) {
         this.velocity = {
             x: 0,
             y: 0
@@ -135,26 +135,29 @@ class Invader {
 class Grid {
     constructor() {
         this.position = {
-            x:0,
-            y:0
+            x: 0,
+            y: 0
         }
         this.velocity = {
-            x:0,
-            y:0
+            x: 0,
+            y: 0
         }
         this.invaders = []
 
-        for (let x = 0; x < 10; x++){
-            for (let y = 0; y < 10; y++){
-            this.invaders.push(new Invader({position: {
-                x: x * 30,
-                y: y * 30
-            }}))
+        const rows = Math.floor(Math.random() * 5)
+        for (let x = 0; x < 10; x++) {
+            for (let y = 0; rows < 10; y++) {
+                this.invaders.push(new Invader({
+                    position: {
+                        x: x * 30,
+                        y: y * 30
+                    }
+                }))
+            }
         }
-    }
         console.log(this.invaders)
     }
-    update() {}
+    update() { }
 }
 
 const player = new Player()
