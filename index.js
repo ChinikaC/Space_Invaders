@@ -95,7 +95,6 @@ class Invader {
             x: 0,
             y: 0
         }
-
         const image = new Image()
         image.src = './img/invader.png'
         image.onload = () => {
@@ -144,15 +143,15 @@ class Grid {
             y: 0
         }
 
-        this.invaders = []
+        this.invaders = [new Invader()]
+    }
+    update() {
     }
 }
 
-
-
 const player = new Player()
 const projectiles = []
-const invader = new Invader()
+const grids = [new Grid()]
 const keys = {
     ArrowLeft: {
         pressed: false
@@ -169,7 +168,6 @@ function animate() {
     requestAnimationFrame(animate)
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
-    invader.update()
     player.update()
     projectiles.forEach((projectile, index) => {
 
@@ -180,6 +178,13 @@ function animate() {
         } else {
             projectile.update()
         }
+    })
+
+    grids.forEach(grid =>{
+        grid.update()
+        grid.invaders.forEach(invader => {
+            invader.update()
+        })
     })
   
 
