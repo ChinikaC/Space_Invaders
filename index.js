@@ -143,8 +143,14 @@ class Grid {
             y: 0
         }
 
-        this.invaders = [new Invader()]
+        this.invaders = []
+
+        for (let i = 0; i < 10; i++){
+            this.invaders.push(new Invader())
+        }
+        console.log(this.invaders)
     }
+
     update() {
     }
 }
