@@ -145,8 +145,9 @@ class Grid {
 
         this.invaders = []
 
-        const rows = Math.floor(Math.random() * 5 + 2)
-        for (let x = 0; x < 10; x++) {
+        const columns = Math.floor(Math.random() * 10 + 5)
+        const rows = Math.floor(Math.random() * 5 + 5)
+        for (let x = 0; x < columns; x++) {
             for (let y = 0; y < rows; y++) {
                 this.invaders.push(
                     new Invader({
