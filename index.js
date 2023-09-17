@@ -122,11 +122,11 @@ class Invader {
             this.height)
     }
 
-    update() {
+    update({velocity}) {
         if (this.image) {
             this.draw()
-            this.position.x += this.velocity.x
-            this.position.y += this.velocity.y
+            this.position.x += velocity.x
+            this.position.y += velocity.y
         }
     }
 }
@@ -139,7 +139,7 @@ class Grid {
         }
 
         this.velocity = {
-            x: 0,
+            x: 3,
             y: 0
         }
 
@@ -163,6 +163,8 @@ class Grid {
     }
 
     update() {
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
     }
 }
 
@@ -200,7 +202,7 @@ function animate() {
     grids.forEach(grid => {
         grid.update()
         grid.invaders.forEach(invader => {
-            invader.update()
+            invader.update({velocity: grid.velocity})
         })
     })
 
