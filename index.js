@@ -90,7 +90,7 @@ class Projectile {
 }
 
 class Invader {
-    constructor() {
+    constructor({position}) {
         this.velocity = {
             x: 0,
             y: 0
@@ -103,8 +103,8 @@ class Invader {
             this.width = image.width * scale
             this.height = image.height * scale
             this.position = {
-                x: canvas.width / 2 - this.width / 2,
-                y: canvas.height / 2
+                x: position.x,
+                y: position.y
             }
         }
     }
@@ -146,7 +146,10 @@ class Grid {
         this.invaders = []
 
         for (let i = 0; i < 10; i++){
-            this.invaders.push(new Invader())
+            this.invaders.push(new Invader({position: {
+                x: 0,
+                y: 0
+            }}))
         }
         console.log(this.invaders)
     }
