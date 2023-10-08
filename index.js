@@ -231,13 +231,14 @@ function animate() {
         player.velocity.x = 0
         player.rotation = 0
     }
-}
 
+    console.log(frames)
 if (frames % 1000 === 0){
     grids.push(new Grid())
 }
 
 frames++
+}
 
 animate()
 
