@@ -236,8 +236,12 @@ function animate() {
     }
 
     console.log(frames)
+    // spawning enemies
 if (frames % randomInterval=== 0){
     grids.push(new Grid())
+    randomInterval = Math.floor(Math.random() * 500 + 500)
+    frames = 0
+    console.log(randomInterval)
 }
 
 frames++
