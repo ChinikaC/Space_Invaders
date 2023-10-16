@@ -195,7 +195,7 @@ const keys = {
 }
 
 let frames = 0
-let randomInterval = (Math.random() * 500) + 500
+let randomInterval = Math.floor(Math.random() * 500 + 500)
 
 console.log(randomInterval)
 
