@@ -88,6 +88,27 @@ class Projectile {
     }
 }
 
+class InvaderProjectile {
+    constructor({ position, velocity }) {
+        this.position = position
+        this.velocity = velocity
+        this.width = 3
+        this.height = 10
+    }
+
+    draw() {
+        canvas.fillStyle = 'white'
+        canvas.fillRect(this.position.x, this.position.y,
+            this.width, this.height) 
+    }
+
+    update() {
+        this.draw()
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+    }
+}
+
 class Invader {
     constructor({ position }) {
         this.velocity = {
@@ -127,6 +148,10 @@ class Invader {
             this.position.x += velocity.x
             this.position.y += velocity.y
         }
+    }
+    shoot(InvaderProjectiles){
+        InvaderProjectiles.push( new InvaderProjectile)
+
     }
 }
 
@@ -233,7 +258,8 @@ function animate() {
                             )
                             const projectileFound = projectiles.find(
                                 projectile2 => projectile2 === projectile)
-// Remove invader and projectile
+
+// Took into account new grid width - Remove invader and projectile
                             if(invaderFound && projectileFound){
                             grid.invaders.splice(i, 1)
                             projectiles.splice(j, 1)
