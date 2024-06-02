@@ -88,17 +88,16 @@ class Projectile {
     }
 }
 
-class InvaderProjectile {
+class invaderProjectile {
     constructor({ position, velocity }) {
         this.position = position
         this.velocity = velocity
         this.width = 3
         this.height = 10
     }
-
     draw() {
         canvas.fillStyle = 'white'
-        canvas.fillRect(this.position.x, this.position.y,
+        context.fillRect(this.position.x, this.position.y,
             this.width, this.height) 
     }
 
@@ -141,7 +140,6 @@ class Invader {
             this.width,
             this.height)
     }
-
     update({velocity}) {
         if (this.image) {
             this.draw()
@@ -149,9 +147,18 @@ class Invader {
             this.position.y += velocity.y
         }
     }
-    shoot(InvaderProjectiles){
-        InvaderProjectiles.push( new InvaderProjectile)
-
+    shoot(invaderProjectiles){
+        invaderProjectiles.push(new invaderProjectile({
+            position: {
+        x: this.position.x + this.width/2,
+        y: this.position.y + this.height
+    },
+    velocity: {
+        x:0, 
+        y:5
+    }
+})
+        )
     }
 }
 
@@ -206,6 +213,8 @@ class Grid {
 const player = new Player()
 const projectiles = []
 const grids = []
+const invaderProjectiles = []
+
 const keys = {
     ArrowLeft: {
         pressed: false
@@ -221,15 +230,16 @@ const keys = {
 let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
 
-console.log(randomInterval)
-
 function animate() {
     requestAnimationFrame(animate)
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.update()
-    projectiles.forEach((projectile, index) => {
+    invaderProjectiles.forEach(invaderProjectile => {
+        invaderProjectile.update()
+    })
 
+    projectiles.forEach((projectile, index) => {
         if (projectile.position.y + projectile.radius <= 0) {
             setTimeout(() => {
                 projectiles.splice(index, 1)
@@ -241,6 +251,13 @@ function animate() {
 
     grids.forEach((grid, gridIndex) => {
         grid.update()
+
+        // spawn projectiles
+        if (frames % 100 === 0 && grid.invaders.length > 0){
+            grid.invaders[Math.floor(Math.random() * grid.invaders.
+                length)].shoot(invaderProjectiles)
+        }
+
         grid.invaders.forEach((invader, i) => {
             invader.update({velocity: grid.velocity})
 
@@ -297,8 +314,9 @@ function animate() {
     }
 
     console.log(frames)
+
     // spawning enemies
-if (frames % randomInterval=== 0){
+if (frames % randomInterval === 0){
     grids.push(new Grid())
     randomInterval = Math.floor(Math.random() * 500 + 500)
     frames = 0
