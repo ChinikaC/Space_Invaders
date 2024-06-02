@@ -96,7 +96,7 @@ class invaderProjectile {
         this.height = 10
     }
     draw() {
-        canvas.fillStyle = 'white'
+        context.fillStyle = 'white'
         context.fillRect(this.position.x, this.position.y,
             this.width, this.height) 
     }
