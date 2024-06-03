@@ -235,9 +235,16 @@ function animate() {
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.update()
-    invaderProjectiles.forEach(invaderProjectile => {
-        invaderProjectile.update()
+    invaderProjectiles.forEach((invaderProjectile, index) => {
+        if (invaderProjectile.position.y + invaderProjectile.height
+            >= canvas.height){
+                setTimeout(() => {
+                    invaderProjectiles.splice(index, 1)
+                }, 0)
+            } else invaderProjectile.update()
     })
+
+    console.log(invaderProjectiles)
 
     projectiles.forEach((projectile, index) => {
         if (projectile.position.y + projectile.radius <= 0) {
