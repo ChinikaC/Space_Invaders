@@ -93,6 +93,7 @@ class Particle {
         this.position = position
         this.velocity = velocity
         this.radius = this.radius
+        this.color = this.color
     }
 
     draw() {
@@ -102,7 +103,7 @@ class Particle {
             this.radius,
             0,
             Math.PI * 2)
-        context.fillStyle = 'red'
+        context.fillStyle = this.color
         context.fill()
         context.closePath()
     }
@@ -240,6 +241,7 @@ const player = new Player()
 const projectiles = []
 const grids = []
 const invaderProjectiles = []
+const particles = []
 
 const keys = {
     ArrowLeft: {
@@ -261,6 +263,11 @@ function animate() {
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.update()
+
+    // Rendering out the particles
+    particles.forEach(particle => {
+        particle.update()
+})
     invaderProjectiles.forEach((invaderProjectile, index) => {
         if (invaderProjectile.position.y + invaderProjectile.height
             >= canvas.height){
