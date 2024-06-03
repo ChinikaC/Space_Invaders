@@ -308,7 +308,7 @@ function animate() {
 
         grid.invaders.forEach((invader, i) => {
             invader.update({velocity: grid.velocity})
-
+// Projectiles hit enemies
             projectiles.forEach((projectile, j) => {
                 if(projectile.position.y - projectile.radius <= 
                     invader.position.y + invader.height &&
@@ -317,6 +317,19 @@ function animate() {
                     projectile.radius <= invader.position.x + invader.width &&
                     projectile.position.y + projectile.radius >= 
                     invader.position.y){
+                        particles.push(new Particle({
+                            position: {
+                                x: invader.position.x + invader.width /2,
+                                y: invader.position.y + invader.height /2
+                            },
+                            velocity: {
+                                x: 2,
+                                y: 2
+                            },
+                            radius: 10,
+                            color: 'green'
+                        }))
+
                         setTimeout(() => {
                             const invaderFound = grid.invaders.find(invader2 =>
                             invader2 === invader
