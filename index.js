@@ -325,7 +325,7 @@ function animate() {
                                 x: Math.random() - 0.5, // Adding -0.5 makes the particles go in different directions
                                 y: Math.random() - 0.5
                             },
-                            radius: 10,
+                            radius: Math.random() * 3, // Makes the particles smaller - gives more of an explosion effect
                             color: 'pink'
                         }))
                     }
