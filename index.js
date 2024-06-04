@@ -314,6 +314,8 @@ function animate() {
                     projectile.radius <= invader.position.x + invader.width &&
                     projectile.position.y + projectile.radius >= 
                     invader.position.y){
+
+                        for (let i = 0; i <15; i++){ // for i, we create 15 partciles per hit and then we add onto i
                         particles.push(new Particle({
                             position: {
                                 x: invader.position.x + invader.width /2,
@@ -324,8 +326,9 @@ function animate() {
                                 y: 2
                             },
                             radius: 10,
-                            color: 'green'
+                            color: 'pink'
                         }))
+                    }
                         setTimeout(() => {
                             const invaderFound = grid.invaders.find(invader2 =>
                             invader2 === invader
