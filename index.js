@@ -322,8 +322,8 @@ function animate() {
                                 y: invader.position.y + invader.height /2
                             },
                             velocity: {
-                                x: Math.random(),
-                                y: Math.random()
+                                x: Math.random() - 0.5, // Adding -0.5 makes the particles go in different directions
+                                y: Math.random() - 0.5
                             },
                             radius: 10,
                             color: 'pink'
