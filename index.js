@@ -89,11 +89,11 @@ class Projectile {
 }
 
 class Particle {
-    constructor({position, velocity, radius}) {
+    constructor({ position, velocity, radius, color }) {
         this.position = position
         this.velocity = velocity
-        this.radius = this.radius
-        this.color = this.color
+        this.radius = radius
+        this.color = color
     }
 
     draw() {
@@ -242,7 +242,6 @@ const projectiles = []
 const grids = []
 const invaderProjectiles = []
 const particles = []
-
 const keys = {
     ArrowLeft: {
         pressed: false
@@ -305,9 +304,9 @@ function animate() {
             grid.invaders[Math.floor(Math.random() * grid.invaders.
                 length)].shoot(invaderProjectiles)
         }
-
         grid.invaders.forEach((invader, i) => {
             invader.update({velocity: grid.velocity})
+
 // Projectiles hit enemies
             projectiles.forEach((projectile, j) => {
                 if(projectile.position.y - projectile.radius <= 
@@ -317,18 +316,6 @@ function animate() {
                     projectile.radius <= invader.position.x + invader.width &&
                     projectile.position.y + projectile.radius >= 
                     invader.position.y){
-                        particles.push(new Particle({
-                            position: {
-                                x: invader.position.x + invader.width /2,
-                                y: invader.position.y + invader.height /2
-                            },
-                            velocity: {
-                                x: 2,
-                                y: 2
-                            },
-                            radius: 10,
-                            color: 'green'
-                        }))
 
                         setTimeout(() => {
                             const invaderFound = grid.invaders.find(invader2 =>
