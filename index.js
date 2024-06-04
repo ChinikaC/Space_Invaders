@@ -335,7 +335,7 @@ function animate() {
                                             y: (Math.random() - 0.5) * 2
                                         },
                                         radius: Math.random() * 3, // Makes the particles smaller - gives more of an explosion effect
-                                        color: 'pink'
+                                        color: '#BAA0DE'
                                     })
                                 )
                                 }
