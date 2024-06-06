@@ -267,11 +267,19 @@ function animate() {
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
     player.update()
-
     // Rendering out the particles
-    particles.forEach(particle => {
+    particles.forEach((particle, i) => {
+        if (particle.opacity <= 0){
+            setTimeout(() => {
+                particles.splice(i, 1)
+            },0)
+        } else {
         particle.update()
+        }
 })
+
+console.log(particles)
+
     invaderProjectiles.forEach((invaderProjectile, index) => {
         if (invaderProjectile.position.y + invaderProjectile.height
             >= canvas.height){
