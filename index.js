@@ -262,7 +262,25 @@ const keys = {
 let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
 
-function animate() {
+function createParticles({object, color}){
+    for (let i = 0; i <15; i++){ // for i, we create 15 partciles per hit and then we add onto i    
+        particles.push(new Particle({
+                    position: {
+                        x: object.position.x + object.width /2,
+                        y: object.position.y + object.height /2
+                    },
+                    velocity: {
+                        x: (Math.random() - 0.5) * 2, // Adding -0.5 makes the particles go in different directions
+                        y: (Math.random() - 0.5) * 2
+                    },
+                    radius: Math.random() * 3, // Makes the particles smaller - gives more of an explosion effect
+                    color: color || '#BAA0DE'
+                })
+            )
+            }
+}
+
+function animate(){
     requestAnimationFrame(animate)
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
@@ -337,21 +355,10 @@ console.log(particles)
 
 // Took into account new grid width - Remove invader and projectile
                             if(invaderFound && projectileFound){
-                                for (let i = 0; i <15; i++){ // for i, we create 15 partciles per hit and then we add onto i
-                                    particles.push(new Particle({
-                                        position: {
-                                            x: invader.position.x + invader.width /2,
-                                            y: invader.position.y + invader.height /2
-                                        },
-                                        velocity: {
-                                            x: (Math.random() - 0.5) * 2, // Adding -0.5 makes the particles go in different directions
-                                            y: (Math.random() - 0.5) * 2
-                                        },
-                                        radius: Math.random() * 3, // Makes the particles smaller - gives more of an explosion effect
-                                        color: '#BAA0DE'
-                                    })
-                                )
-                                }
+                            createParticles({
+                                object: invader
+                            })
+
                             grid.invaders.splice(i, 1)
                             projectiles.splice(j, 1)
 
