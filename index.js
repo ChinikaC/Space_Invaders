@@ -305,12 +305,15 @@ console.log(particles)
                     invaderProjectiles.splice(index, 1)
                 }, 0)
             } else invaderProjectile.update()
-
+// When projectile hits player
             if (invaderProjectile.position.y + invaderProjectile.height
                 >= player.position.y && invaderProjectile.position.x +
             invaderProjectile.width >= player.position.x &&
         invaderProjectile.position.x <= player.position.x +
     player.width){
+        setTimeout(() => {
+            invaderProjectiles.splice(index, 1)
+        }, 0)
                     console.log('you lose!')
                     createParticles({
                         object: player,
