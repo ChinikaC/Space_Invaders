@@ -312,6 +312,10 @@ console.log(particles)
         invaderProjectile.position.x <= player.position.x +
     player.width){
                     console.log('you lose!')
+                    createParticles({
+                        object: player,
+                        color: 'white'
+                    })
                 }
     })
 
