@@ -89,12 +89,13 @@ class Projectile {
 }
 
 class Particle {
-    constructor({ position, velocity, radius, color }) {
+    constructor({ position, velocity, radius, color, fades }) {
         this.position = position
         this.velocity = velocity
         this.radius = radius
         this.color = color
         this.opacity = 1
+        this.fades = fades //passed through a constructor argument
     }
 
     draw() {
@@ -116,7 +117,7 @@ class Particle {
         this.draw()
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
-        this.opacity -= 0.01
+        if (this.fades) this.opacity -= 0.01
     }
 }
 
@@ -262,7 +263,7 @@ const keys = {
 let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
 
-for (let i = 0; i <15; i++){     
+for (let i = 0; i <100; i++){     
     particles.push(new Particle({
                 position: {
                     x: Math.random() * canvas.width,
