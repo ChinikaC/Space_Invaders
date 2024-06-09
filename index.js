@@ -263,6 +263,7 @@ const keys = {
 let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
 
+// The stars in the background
 for (let i = 0; i <100; i++){     
     particles.push(new Particle({
                 position: {
@@ -271,7 +272,7 @@ for (let i = 0; i <100; i++){
                 },
                 velocity: {
                     x: 0,
-                    y: 1
+                    y: 0.3
                 },
                 radius: Math.random() * 2, 
                 color: 'white'
