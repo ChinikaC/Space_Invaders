@@ -262,6 +262,22 @@ const keys = {
 let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
 
+for (let i = 0; i <15; i++){     
+    particles.push(new Particle({
+                position: {
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height
+                },
+                velocity: {
+                    x: 0,
+                    y: 1
+                },
+                radius: Math.random() * 2, 
+                color: 'white'
+            })
+        )
+        }
+
 function createParticles({object, color}){
     for (let i = 0; i <15; i++){ // for i, we create 15 partciles per hit and then we add onto i    
         particles.push(new Particle({
