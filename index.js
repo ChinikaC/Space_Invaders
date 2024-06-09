@@ -279,7 +279,7 @@ for (let i = 0; i <100; i++){
         )
         }
 
-function createParticles({object, color}){
+function createParticles({object, color, fades}){
     for (let i = 0; i <15; i++){ // for i, we create 15 partciles per hit and then we add onto i    
         particles.push(new Particle({
                     position: {
@@ -291,7 +291,8 @@ function createParticles({object, color}){
                         y: (Math.random() - 0.5) * 2
                     },
                     radius: Math.random() * 3, // Makes the particles smaller - gives more of an explosion effect
-                    color: color || '#BAA0DE'
+                    color: color || '#BAA0DE',
+                    fades: true
                 })
             )
             }
@@ -304,6 +305,11 @@ function animate(){
     player.update()
     // Rendering out the particles
     particles.forEach((particle, i) => {
+        if (particle.position.y - particle.radius >= canvas.height){
+            particle.position.x = Math.random() * canvas.width
+            particle.position.y = - particle.radius // so more particles (stars) are created from the top when the particles move to the bottom
+        }
+
         if (particle.opacity <= 0){
             setTimeout(() => {
                 particles.splice(i, 1)
@@ -334,7 +340,8 @@ console.log(particles)
                     console.log('you lose!')
                     createParticles({
                         object: player,
-                        color: 'white'
+                        color: 'white',
+                        fades: true
                     })
                 }
     })
@@ -380,7 +387,8 @@ console.log(particles)
 // Took into account new grid width - Remove invader and projectile
                             if(invaderFound && projectileFound){
                             createParticles({
-                                object: invader
+                                object: invader,
+                                fades: true
                             })
 
                             grid.invaders.splice(i, 1)
