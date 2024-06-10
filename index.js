@@ -336,7 +336,8 @@ console.log(particles)
                     invaderProjectiles.splice(index, 1)
                 }, 0)
             } else invaderProjectile.update()
-// When projectile hits player
+
+            // When projectile hits player
             if (invaderProjectile.position.y + invaderProjectile.height
                 >= player.position.y && invaderProjectile.position.x +
             invaderProjectile.width >= player.position.x &&
@@ -453,6 +454,7 @@ frames++
 animate()
 
 addEventListener('keydown', ({ key }) => {
+    if (game.over) return
     switch (key) {
         case 'ArrowLeft':
             // console.log('left')
