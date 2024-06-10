@@ -12,6 +12,7 @@ class Player {
         }
 
         this.rotation = 0
+        this.opacity = 1
 
         const image = new Image()
         image.src = './img/spaceship.png'
@@ -260,8 +261,14 @@ const keys = {
     }
 }
 
+// Variables
 let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
+let game = {
+    over: false,
+    active: false
+}
+
 
 // The stars in the background
 for (let i = 0; i <100; i++){     
@@ -310,7 +317,6 @@ function animate(){
             particle.position.x = Math.random() * canvas.width
             particle.position.y = - particle.radius // so more particles (stars) are created from the top when the particles move to the bottom
         }
-
         if (particle.opacity <= 0){
             setTimeout(() => {
                 particles.splice(i, 1)
@@ -335,10 +341,13 @@ console.log(particles)
             invaderProjectile.width >= player.position.x &&
         invaderProjectile.position.x <= player.position.x +
     player.width){
+
+        console.log('you lose!')
         setTimeout(() => {
             invaderProjectiles.splice(index, 1)
+            player.opacity = 0
+            game.over =true
         }, 0)
-                    console.log('you lose!')
                     createParticles({
                         object: player,
                         color: 'white',
