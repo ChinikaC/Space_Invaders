@@ -34,6 +34,7 @@ class Player {
         //     this.width, this.height)
 
         context.save()
+        context.globalAlpha = this.opacity
         context.translate(
             player.position.x + player.width / 2,
             player.position.y + player.height / 2
