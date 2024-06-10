@@ -267,7 +267,7 @@ let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
 let game = {
     over: false,
-    active: false
+    active: true
 }
 
 
@@ -308,6 +308,7 @@ function createParticles({object, color, fades}){
 }
 
 function animate(){
+    if (!game.active) return
     requestAnimationFrame(animate)
     context.fillStyle = 'black'
     context.fillRect(0, 0, canvas.width, canvas.height) // 0, 0 is for x and y and starts at the top of the screen
@@ -350,6 +351,10 @@ console.log(particles)
             player.opacity = 0
             game.over =true
         }, 0)
+// Once the player gets hit by a projectile and disappears, the game ends:
+        setTimeout(() => {
+            game.active = false
+        }, 2000) // 2000 miliseconds that it takes for the game to end
                     createParticles({
                         object: player,
                         color: 'white',
