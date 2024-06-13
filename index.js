@@ -1,5 +1,8 @@
+const scoreElement = document.querySelector('#scoreElement')
 const canvas = document.querySelector('canvas')
 const context = canvas.getContext('2d')
+
+console.log(scoreElement)
 
 canvas.width = innerWidth
 canvas.height = innerHeight
@@ -269,7 +272,7 @@ let game = {
     over: false,
     active: true
 }
-
+let score = 0
 
 // The stars in the background
 for (let i = 0; i <100; i++){     
@@ -403,6 +406,9 @@ console.log(particles)
 
 // Took into account new grid width - Remove invader and projectile
                             if(invaderFound && projectileFound){
+                                score += 100
+                                console.log(score)
+                                scoreElement.innerHTML = score
                             createParticles({
                                 object: invader,
                                 fades: true
